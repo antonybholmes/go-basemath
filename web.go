@@ -23,7 +23,7 @@ type DataResp struct {
 }
 
 func JsonRep[V interface{}](c echo.Context, status int, data V) error {
-	return c.JSONPretty(status, data, "  ")
+	return c.JSONPretty(status, data, " ")
 }
 
 func MakeBadResp(c echo.Context, err error) error {
