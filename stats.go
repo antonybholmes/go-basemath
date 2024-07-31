@@ -1,39 +1,15 @@
 package basemath
 
 import (
-	"fmt"
 	"math"
 )
 
-func FactorialLn(n uint) float64 {
-	// for property 0! = 1 since exp(0) == 1
-	if n == 0 {
-		return 1
-	}
-
-	var ret float64 = 0
-
-	for i := range n {
-		ret += math.Log(float64(i + 1))
-	}
-
-	return ret
+func LnBinomial(n uint64, k uint64) float64 {
+	return LnFactorial(n) - LnFactorial(k) - LnFactorial(n-k)
 }
 
-func Factorial(x uint) uint {
-	if x < 1 {
-		return 1
-	}
-
-	return uint(math.Round(math.Exp(FactorialLn(x))))
-}
-
-func BinomialLn(n uint, k uint) float64 {
-	return FactorialLn(n) - FactorialLn(k) - FactorialLn(n-k)
-}
-
-func Binomial(n uint, k uint) uint {
-	return uint(math.Round(math.Exp(BinomialLn(n, k))))
+func Binomial(n uint64, k uint64) uint64 {
+	return uint64(math.Round(math.Exp(LnBinomial(n, k))))
 }
 
 /**
@@ -46,12 +22,12 @@ func Binomial(n uint, k uint) uint {
  * @returns probability of arrangement occuring by chance
  */
 func LnHypgeomPMF(
-	k uint,
-	N uint,
-	K uint,
-	n uint,
+	k uint64,
+	N uint64,
+	K uint64,
+	n uint64,
 ) float64 {
-	return BinomialLn(K, k) + BinomialLn(N-K, n-k) - BinomialLn(N, n)
+	return LnBinomial(K, k) + LnBinomial(N-K, n-k) - LnBinomial(N, n)
 }
 
 /**
@@ -63,7 +39,7 @@ func LnHypgeomPMF(
  * @param n number of draws, i.e. how many items we select each time
  * @returns probability of arrangement occuring by chance
  */
-func HypGeomPMF(k uint, N uint, K uint, n uint) float64 {
+func HypGeomPMF(k uint64, N uint64, K uint64, n uint64) float64 {
 	return math.Exp(LnHypgeomPMF(k, N, K, n))
 }
 
@@ -76,13 +52,13 @@ func HypGeomPMF(k uint, N uint, K uint, n uint) float64 {
  * @param n number of draws, i.e. how many items we select each time
  * @returns probability of arrangement occuring by chance
  */
-func HypGeomCDF(k uint, N uint, K uint, n uint) float64 {
+func HypGeomCDF(k uint64, N uint64, K uint64, n uint64) float64 {
 	//console.log(k, N, K, n)
 
 	var sum float64 = 0
 
-	for i := range k {
-		fmt.Printf("%d", i)
+	for i := range k + 1 {
+		//fmt.Printf("aha %d", i)
 		sum += HypGeomPMF(i, N, K, n)
 	}
 
