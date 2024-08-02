@@ -4,11 +4,11 @@ import (
 	"math"
 )
 
-func LnBinomial(n uint64, k uint64) float64 {
+func LnBinomial(n int, k int) float64 {
 	return LnFactorial(n) - LnFactorial(k) - LnFactorial(n-k)
 }
 
-func Binomial(n uint64, k uint64) uint64 {
+func Binomial(n int, k int) uint64 {
 	return uint64(math.Round(math.Exp(LnBinomial(n, k))))
 }
 
@@ -22,10 +22,10 @@ func Binomial(n uint64, k uint64) uint64 {
  * @returns probability of arrangement occuring by chance
  */
 func LnHypgeomPMF(
-	k uint64,
-	N uint64,
-	K uint64,
-	n uint64,
+	k int,
+	N int,
+	K int,
+	n int,
 ) float64 {
 	return LnBinomial(K, k) + LnBinomial(N-K, n-k) - LnBinomial(N, n)
 }
@@ -39,7 +39,7 @@ func LnHypgeomPMF(
  * @param n number of draws, i.e. how many items we select each time
  * @returns probability of arrangement occuring by chance
  */
-func HypGeomPMF(k uint64, N uint64, K uint64, n uint64) float64 {
+func HypGeomPMF(k int, N int, K int, n int) float64 {
 	return math.Exp(LnHypgeomPMF(k, N, K, n))
 }
 
@@ -52,7 +52,7 @@ func HypGeomPMF(k uint64, N uint64, K uint64, n uint64) float64 {
  * @param n number of draws, i.e. how many items we select each time
  * @returns probability of arrangement occuring by chance
  */
-func HypGeomCDF(k uint64, N uint64, K uint64, n uint64) float64 {
+func HypGeomCDF(k int, N int, K int, n int) float64 {
 	//console.log(k, N, K, n)
 
 	var sum float64 = 0

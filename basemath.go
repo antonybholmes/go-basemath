@@ -49,7 +49,7 @@ func UintMax(x, y uint) uint {
 	return y
 }
 
-func LnFactorial(n uint64) float64 {
+func LnFactorial(n int) float64 {
 	// for property 0! = 1 since exp(0) == 1
 	if n == 0 {
 		return 0
@@ -64,7 +64,7 @@ func LnFactorial(n uint64) float64 {
 	return ret
 }
 
-func Factorial(n uint64) uint64 {
+func Factorial(n int) uint64 {
 	if n == 0 {
 		return 1
 	}
