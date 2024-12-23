@@ -71,3 +71,20 @@ func Factorial(n int) uint64 {
 
 	return uint64(math.Round(math.Exp(LnFactorial(n))))
 }
+
+// Returns the max value of an array of floats
+func MaxFloat64Array(values *[]float64) float64 {
+
+	if len(*values) == 0 {
+		return 0 // Or handle the empty array case appropriately
+	}
+
+	max := 0.0
+
+	for _, num := range *values {
+		max = math.Max(num, max)
+	}
+
+	return max
+
+}
