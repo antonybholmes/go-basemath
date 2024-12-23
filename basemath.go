@@ -1,6 +1,8 @@
 package basemath
 
-import "math"
+import (
+	"math"
+)
 
 func AbsInt(x int) int {
 	return AbsDiffInt(x, 0)
@@ -83,6 +85,22 @@ func MaxFloat64Array(values *[]float64) float64 {
 
 	for _, num := range *values {
 		max = math.Max(num, max)
+	}
+
+	return max
+
+}
+
+func MaxUintArray(values *[]uint) uint {
+
+	if len(*values) == 0 {
+		return 0 // Or handle the empty array case appropriately
+	}
+
+	max := uint(0)
+
+	for _, num := range *values {
+		max = UintMax(num, max)
 	}
 
 	return max
