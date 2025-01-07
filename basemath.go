@@ -2,6 +2,8 @@ package basemath
 
 import (
 	"math"
+
+	"golang.org/x/exp/constraints"
 )
 
 func AbsInt(x int) int {
@@ -23,32 +25,46 @@ func AbsDiffUint(x, y uint) uint {
 	return x - y
 }
 
-func IntMin(x, y int) int {
-	if x < y {
-		return x
+// func IntMin(x, y int) int {
+// 	if x < y {
+// 		return x
+// 	}
+// 	return y
+// }
+
+// func IntMax(x, y int) int {
+// 	if x > y {
+// 		return x
+// 	}
+// 	return y
+// }
+
+// func UintMin(x, y uint) uint {
+// 	if x < y {
+// 		return x
+// 	}
+// 	return y
+// }
+
+// func UintMax(x, y uint) uint {
+// 	if x > y {
+// 		return x
+// 	}
+// 	return y
+// }
+
+func Min[T constraints.Ordered](a, b T) T {
+	if a < b {
+		return a
 	}
-	return y
+	return b
 }
 
-func IntMax(x, y int) int {
-	if x > y {
-		return x
+func Max[T constraints.Ordered](a, b T) T {
+	if a > b {
+		return a
 	}
-	return y
-}
-
-func UintMin(x, y uint) uint {
-	if x < y {
-		return x
-	}
-	return y
-}
-
-func UintMax(x, y uint) uint {
-	if x > y {
-		return x
-	}
-	return y
+	return b
 }
 
 func LnFactorial(n int) float64 {
@@ -91,6 +107,7 @@ func MaxFloat64Array(values *[]float64) float64 {
 
 }
 
+// Returns the max value in an array of uints.
 func MaxUintArray(values *[]uint) uint {
 
 	if len(*values) == 0 {
@@ -100,7 +117,7 @@ func MaxUintArray(values *[]uint) uint {
 	max := uint(0)
 
 	for _, num := range *values {
-		max = UintMax(num, max)
+		max = Max(num, max)
 	}
 
 	return max
