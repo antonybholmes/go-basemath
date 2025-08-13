@@ -1,10 +1,8 @@
 module github.com/antonybholmes/go-math
 
-go 1.24
-
-toolchain go1.24.0
+go 1.25
 
 require (
 	github.com/google/go-cmp v0.6.0
-	golang.org/x/exp v0.0.0-20250811191247-51f88131bc50
+	golang.org/x/exp v0.0.0-20250813145105-42675adae3e6
 )
