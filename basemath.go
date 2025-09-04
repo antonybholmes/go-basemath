@@ -7,7 +7,10 @@ import (
 )
 
 func AbsInt(x int) int {
-	return AbsDiffInt(x, 0)
+	if x < 0 {
+		return -x
+	}
+	return x
 }
 
 func AbsDiffInt(x, y int) int {
