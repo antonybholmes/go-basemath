@@ -10,6 +10,7 @@ func AbsInt(x int) int {
 	if x < 0 {
 		return -x
 	}
+
 	return x
 }
 
@@ -20,7 +21,7 @@ func AbsDiffInt(x, y int) int {
 	return x - y
 }
 
-func AbsDiffUint(x, y uint) uint {
+func AbsDiffint(x, y int) int {
 	if x < y {
 		return y - x
 	}
@@ -42,14 +43,14 @@ func AbsDiffUint(x, y uint) uint {
 // 	return y
 // }
 
-// func UintMin(x, y uint) uint {
+// func intMin(x, y int) int {
 // 	if x < y {
 // 		return x
 // 	}
 // 	return y
 // }
 
-// func UintMax(x, y uint) uint {
+// func intMax(x, y int) int {
 // 	if x > y {
 // 		return x
 // 	}
@@ -85,12 +86,12 @@ func LnFactorial(n int) float64 {
 	return ret
 }
 
-func Factorial(n int) uint64 {
+func Factorial(n int) int64 {
 	if n == 0 {
 		return 1
 	}
 
-	return uint64(math.Round(math.Exp(LnFactorial(n))))
+	return int64(math.Round(math.Exp(LnFactorial(n))))
 }
 
 // Returns the max value of an array of floats
@@ -110,14 +111,14 @@ func MaxFloat64Array(values *[]float64) float64 {
 
 }
 
-// Returns the max value in an array of uints.
-func MaxUintArray(values *[]uint) uint {
+// Returns the max value in an array of ints.
+func MaxintArray(values *[]int) int {
 
 	if len(*values) == 0 {
 		return 0 // Or handle the empty array case appropriately
 	}
 
-	max := uint(0)
+	max := int(0)
 
 	for _, num := range *values {
 		max = Max(num, max)
