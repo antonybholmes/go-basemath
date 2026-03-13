@@ -2,6 +2,8 @@ package basemath
 
 import (
 	"math"
+
+	"golang.org/x/exp/constraints"
 )
 
 func AbsInt(x int) int {
@@ -55,14 +57,14 @@ func AbsDiffint(x, y int) int {
 // 	return y
 // }
 
-func Min[T ~int | ~float32 | ~float64](a, b T) T {
+func Min[T constraints.Ordered](a, b T) T {
 	if a < b {
 		return a
 	}
 	return b
 }
 
-func Max[T ~int | ~float32 | ~float64](a, b T) T {
+func Max[T constraints.Ordered](a, b T) T {
 	if a > b {
 		return a
 	}
