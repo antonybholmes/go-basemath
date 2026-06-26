@@ -1,4 +1,4 @@
-module github.com/antonybholmes/go-math
+module github.com/antonybholmes/go-basemath
 
 go 1.26
 
